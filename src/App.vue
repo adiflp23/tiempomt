@@ -1,28 +1,50 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="app">
+    <div class="header container h-100 p-5">
+      <h1 class="mb-5">El Tiempo</h1>
+      <div class="d-flex justify-content-center h-100" >
+        <div class="searchbar w-50 mx-2">
+          <input type="text" class="input form-control" v-model="ciudad" placeholder="Busca una ciudad...">
+        </div>
+        <button class="btn-search btn btn-primary" @click="buscarTiempo"><span class="material-icons">search</span></button>
+      </div>
+    </div>
+    <br>
+    <Tiempo :ciudad="ciudad" v-if="mostrarTiempo" />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Tiempo from './components/Tiempo.vue'; 
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
+    Tiempo,
+  },
+  data() {
+    return {
+      ciudad: " ",
+      mostrarTiempo: false,
+    }
+  },
+  methods: {
+    async buscarTiempo () {
+      this.mostrarTiempo = false;
+      await this.$nextTick();
+      this.mostrarTiempo = true;
+    }
   }
-}
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.header {
+  background-color: rgb(220, 220, 220);
+  border-radius: 20px;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial,;
+  margin-top: 5rem;
 }
+
 </style>
