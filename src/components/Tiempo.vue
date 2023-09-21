@@ -31,7 +31,7 @@
           </tbody>
         </table>
 
-        <DiasTiempo />
+        <DiasTiempo :ciudadnombre="ciudadnombre"/>
 
         <div id="div_Form" class="d-flex m-3 justify-content-center">
           <form action="">
@@ -60,6 +60,7 @@ export default {
   },
   data(){
       return{
+        ciudadnombre: this.ciudad,
         temperatura: null,
         descripcion: null,
         iconoUrl: null,
@@ -107,7 +108,7 @@ export default {
 .main-div {
   border-radius: 20px;
   color: #fff;
-  background-image: url("");
+  background-image: url('../assets/fondo.jpg');
   background-size: cover;
   background-position: center;
   background-blend-mode: overlay;

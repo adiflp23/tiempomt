@@ -28,10 +28,50 @@
 </template>
 
 <script>
+import axios from 'axios';
+import moment from 'moment';
 
 export default {
-  name: "App",
-  components: {},
+  props: {
+    ciudadnombre: String,
+  },
+  data(){
+    return{
+        forecast: [],
+        cargando: true,
+        iconUrl: null
+    }
+  },
+  mounted() {
+    this.fetchTiempoDatos();
+  },
+  methods: {
+    async fetchTiempoDatos(){
+        const ciudad = this.ciudadnombre;
+
+        await axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=${ciudad}&units=metric&appid=502f1c7b80f833988ac49eff956a42e3`).then(Response => {
+            const forecastData = Response.data.list;
+            const filteredeData = forecastData.map(item => {
+                return {
+                    date: moment(item.dt_txt.split(' ')[0]),
+                    temperature: Math.round(item.main.temp),
+                    description: item.weather[0].description,
+                    iconUrl: `https://api.openweathermap.org/img/w/${item.weather[0].icon}.png`,
+                };
+            }).reduce((acc, item) => {
+                if(!acc.some(day => day.date.isSame(item.date, 'day'))){
+                    acc.push(item)
+                }
+                return acc;
+            }, []).slice(1, 5);
+               console.log(filteredeData, "funcionando"); 
+        }).catch(error => {
+            console.error("esta dando error el fetching", error);
+            this.loading = false
+        })
+        
+    }
+  }
 };
 </script>
 
