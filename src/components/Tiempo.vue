@@ -22,11 +22,11 @@
             </tr>
             <tr>
               <th>Humedad</th>
-              <td>{{humedad}}</td>
+              <td>{{humedad}} %</td>
             </tr>
             <tr>
               <th>Viento</th>
-              <td>{{ viento }}</td>
+              <td>{{ viento }} km/h</td>
             </tr>
           </tbody>
         </table>

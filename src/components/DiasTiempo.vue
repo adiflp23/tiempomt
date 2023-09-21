@@ -1,26 +1,11 @@
 <template>
 <div class="days-tab text-center">
-<div class="loading">Cargando...</div>
-    <ul class="p-0">
-        <li class="li_active">
-            <div class="py-3">icon</div>
-            <div class="py-3">day</div>
-            <div class="py-3">12</div>
-        </li>
-        <li class="li_active">
-            <div class="py-3">icon</div>
-            <div class="py-3">day</div>
-            <div class="py-3">12</div>
-        </li>
-        <li class="li_active">
-            <div class="py-3">icon</div>
-            <div class="py-3">day</div>
-            <div class="py-3">12</div>
-        </li>
-        <li class="li_active">
-            <div class="py-3">icon</div>
-            <div class="py-3">day</div>
-            <div class="py-3">12</div>
+<div v-if="cargando" class="loading">Cargando...</div>
+    <ul v-else class="p-0">
+        <li v-for="day in forecast" :key="day.date" class="li_active">
+            <div class="py-3"><img :src="day.iconUrl"></div>
+            <div class="py-3">{{ getDayName(day.date) }}</div>
+            <div class="py-3">{{ day.temperature }}&deg;</div>
         </li>
     </ul>
 </div>
@@ -65,11 +50,15 @@ export default {
                 return acc;
             }, []).slice(1, 5);
                console.log(filteredeData, "funcionando"); 
+               this.forecast = filteredeData;
+               this.cargando = false;
         }).catch(error => {
             console.error("esta dando error el fetching", error);
-            this.loading = false
+            this.cargando = false
         })
-        
+    },
+    getDayName(date){
+        return date.format('ddd')
     }
   }
 };
