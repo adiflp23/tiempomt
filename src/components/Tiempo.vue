@@ -31,7 +31,8 @@
     </div>
     <div class="card card-3 w-100">
         <HorasDiasTiempo :ciudadnombre="ciudadnombre"/>
-      </div>
+    </div>
+      
   </div>
   
 </template>
