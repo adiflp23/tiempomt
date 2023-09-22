@@ -17,9 +17,21 @@
         <table class="m-4">
           <tbody>
             <tr>
-              <th>Nivel Del Mar</th>
-              <td>{{nivelMar}}</td>
+              <th>Humedad</th>
+              <td>{{humedad}} %</td>
             </tr>
+            <tr>
+              <th>Viento</th>
+              <td>{{ viento }} km/h</td>
+            </tr>
+          </tbody>
+        </table>
+        <DiasTiempo :ciudadnombre="ciudadnombre"/>
+      </div>
+    </div>
+    <div class="card card-3 w-100">
+        <table class="m-4">
+          <tbody>
             <tr>
               <th>Humedad</th>
               <td>{{humedad}} %</td>
@@ -30,21 +42,10 @@
             </tr>
           </tbody>
         </table>
-
         <DiasTiempo :ciudadnombre="ciudadnombre"/>
-
-        <div id="div_Form" class="d-flex m-3 justify-content-center">
-          <form action="">
-            <input
-              type="button"
-              value="Change Location"
-              class="btn change-btn btn-primary"
-            />
-          </form>
-        </div>
       </div>
-    </div>
   </div>
+  
 </template>
 
 <script>
@@ -108,7 +109,6 @@ export default {
 .main-div {
   border-radius: 20px;
   color: #fff;
-  background-image: url('../assets/fondo.jpg');
   background-size: cover;
   background-position: center;
   background-blend-mode: overlay;
@@ -129,6 +129,11 @@ export default {
 .card-2 {
   background-color: #212730;
   border-radius: 20px;
+}
+
+.card-3 {
+  background-color: #212730;
+  margin-top: 50px;
 }
 
 .card-details {
