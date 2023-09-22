@@ -123,7 +123,7 @@ export default {
 
 .card-3 {
   background-color: #212730;
-  margin-top: 50px;
+  margin-top: 20px;
 }
 
 .card-details {

@@ -3,9 +3,9 @@
     <h2 class="titulo">Pronóstico para las próximas 24 horas:</h2>
     <ul>
       <li v-for="hora in pronosticoHorario" :key="hora.timestamp_local">
-        <div class="py-3">{{ hora.timestamp_local }}:</div>
+        <div class="py-3">{{ hora.timestamp_local }}</div>
         <div class="py-3">{{ hora.temp }}°C</div>
-        <div class="py-3">- {{ hora.weather.description }}</div>
+        <div class="py-3">{{ hora.weather.description }}</div>
       </li>
     </ul>
   </div>
@@ -43,7 +43,7 @@ export default {
 
             // Obtener el pronóstico horario de Weatherbit utilizando las coordenadas
             fetch(
-              `https://api.weatherbit.io/v2.0/forecast/hourly?lat=${latitud}&lon=${longitud}&language=es&key=${apiKeyWeatherbit}`
+              `https://api.weatherbit.io/v2.0/forecast/hourly?lat=${latitud}&lon=${longitud}&key=${apiKeyWeatherbit}`
             )
               .then((response) => response.json())
               .then((data) => {
