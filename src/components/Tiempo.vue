@@ -30,19 +30,7 @@
       </div>
     </div>
     <div class="card card-3 w-100">
-        <table class="m-4">
-          <tbody>
-            <tr>
-              <th>Humedad</th>
-              <td>{{humedad}} %</td>
-            </tr>
-            <tr>
-              <th>Viento</th>
-              <td>{{ viento }} km/h</td>
-            </tr>
-          </tbody>
-        </table>
-        <DiasTiempo :ciudadnombre="ciudadnombre"/>
+        <HorasDiasTiempo :ciudadnombre="ciudadnombre"/>
       </div>
   </div>
   
@@ -51,11 +39,13 @@
 <script>
 import DiasTiempo from "./DiasTiempo.vue";
 import axios from 'axios';  
+import HorasDiasTiempo from "./HorasDiasTiempo.vue";
 export default {
   name: "miTiempo",
   components: {
     DiasTiempo,
-  },
+    HorasDiasTiempo
+},
   props: {
     ciudad: String,
   },
