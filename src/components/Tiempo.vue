@@ -1,20 +1,13 @@
 <template>
   <div class="container p-0">
     <div class="d-flex">
-      <div class="card main-div w-100">
+      <div class="card main-div">
         <div class="p-3">
-          <h2 class="mb-1 day">Hoy</h2>
-          <p class="date mb-0">{{fecha}}</p>
-          <small>{{hora}}</small>
-          <h2 class="place"><span class="material-icons">{{ nombre }}location_on <small>{{ pais }}</small></span></h2>
-          <div class="temp">
-            <h1 class="weather-temp">{{temperatura}}&deg;</h1>
-            <h5>{{descripcion}} <img :src="iconoUrl"></h5>
-          </div>
-        </div>
-      </div>
-      <div class="card card-2 w-100">
-        <table class="m-4">
+          <h2 class="mb-1 day text-light">Hoy</h2>
+          <p class="date mb-0 text-light">{{fecha}}</p>
+          <small class="text-light">{{hora}}</small>
+          <h2 class="place text-light"><span class="material-icons">{{ nombre }}location_on <small>{{ pais }}</small></span></h2>
+          <table class="m-4">
           <tbody>
             <tr>
               <th>Humedad</th>
@@ -26,6 +19,13 @@
             </tr>
           </tbody>
         </table>
+          <div class="temp">
+            <h1 class="weather-temp text-light">{{temperatura}}&deg; Grados</h1>
+            <h3 class="text-light">{{descripcion}} <img :src="iconoUrl"></h3>
+          </div>
+        </div>
+      </div>
+      <div class="card card-2 w-100">
         <DiasSemanasTiempo :ciudadnombre="ciudadnombre"/>
       </div>
     </div>
@@ -68,7 +68,7 @@ export default {
       }
   },
   async created() {
-    const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${this.ciudad}&units=metric&appid=502f1c7b80f833988ac49eff956a42e3`)
+    const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${this.ciudad}&units=metric&appid=502f1c7b80f833988ac49eff956a42e3&lang=es`)
     const datosTiempo = response.data;
     this.temperatura = Math.round(datosTiempo.main.temp);
     this.descripcion = datosTiempo.weather[0].description;
@@ -102,13 +102,8 @@ export default {
   color: #fff;
   background-size: cover;
   background-position: center;
-  background-blend-mode: overlay;
-  background-color: black;
-  background-repeat: no-repeat;
-}
-.temp {
-  position: absolute;
-  bottom: 0;
+  background-image: url('https://images.unsplash.com/photo-1694282303612-111be418eca4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY5NTQ5NzAzNA&ixlib=rb-4.0.3&q=80&w=1080');
+
 }
 
 .main-div:hover {
@@ -149,33 +144,20 @@ export default {
   font-size: 1rem;
 }
 
-table {
-  position: relative;
-  left: 15px;
-  border-collapse: separate;
-  border-spacing: 15px;
-  width: 85%;
-  text-align: left;
-  max-width: 600px;
-  margin: 0 auto;
-}
 
 th,
 td {
   font-size: 18px;
-  color: #000000;
+  color: #ffffff;
 }
 
 td {
-  text-align: right;
+  text-align: center;
+  color: white;
 }
 
 table,
 tr:hover {
   color: red;
-}
-
-.change_btn {
-  background-image: linear-gradient(to right, cyan, magenta);
 }
 </style>

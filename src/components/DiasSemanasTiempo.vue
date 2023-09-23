@@ -2,11 +2,11 @@
     <div>
       <h2 class="titulo">Pronóstico para la próxima semana:</h2>
       <b-row>
-        <b-col sm="6" md="4" lg="3" xl="2"  v-for="dia in pronosticoDiario" :key="dia.valid_date">
+        <b-col sm="6" md="4" lg="2" xl="3"  v-for="dia in pronosticoDiario" :key="dia.valid_date">
           <b-card class="mb-2 card-background-image">
-            <div class="py-3">{{ dia.valid_date }}</div>
-            <div class="py-3">{{ dia.min_temp }}°C</div>
-            <div class="py-3">{{ dia.max_temp }}</div>
+            <div class="py-1">{{ mostrarDia(dia.valid_date) }}</div>
+            <div class="py-2">Min {{ dia.min_temp }}°C</div>
+            <div class="py-2">Máx {{ dia.max_temp }}°C</div>
             <div class="py-3">{{ dia.weather.description }}</div>
           </b-card>
         </b-col>
@@ -46,7 +46,7 @@
   
               // Obtener el pronóstico horario de Weatherbit utilizando las coordenadas
               fetch(
-                `https://api.weatherbit.io/v2.0/forecast/daily?lat=${latitud}&lon=${longitud}&key=${apiKeyWeatherbit}`
+                `https://api.weatherbit.io/v2.0/forecast/daily?lat=${latitud}&lon=${longitud}&key=${apiKeyWeatherbit}&lang=es`
               )
                 .then((response) => response.json())
                 .then((data) => {
@@ -65,7 +65,13 @@
             console.error("Error al obtener coordenadas:", error);
           });
       },
+      mostrarDia(timestamp) {
+      // Formatea el día para mostrar solo el nombre del día (en español) sin coma
+      const date = new Date(timestamp);
+      const dayName = date.toLocaleDateString('es-ES', { weekday: 'long' });
+      return dayName.charAt(0).toUpperCase() + dayName.slice(1);
     },
+  },
     mounted() {
       this.fetchTiempoDatos();
     },
@@ -76,11 +82,21 @@
   .titulo{
     text-align: center;
   }
-  .py-3{
+.py-1{
+  text-align: center;
+  color: white;
+}
+
+.py-2{
     text-align: center;
     color: white;
     
-  }
+}
+.py-3{
+    text-align: center;
+    color: white;
+    
+}
   .card-background-image {
     background-image: url("https://img.freepik.com/foto-gratis/cielo-nubes-blancas_23-2148824914.jpg"); /* Reemplaza 'tu_imagen_de_fondo.jpg' con la URL de tu imagen de fondo */
     background-size: cover;

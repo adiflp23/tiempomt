@@ -1,15 +1,22 @@
 <template>
-  <div>
-    <h2 class="titulo">Pronóstico para las próximas 24 horas:</h2>
-    <b-row>
-      <b-col sm="6" md="4" lg="3" xl="2"  v-for="hora in pronosticoHorario" :key="hora.timestamp_local">
-        <b-card class="mb-2 card-background-image">
-          <div class="py-3">{{ hora.timestamp_local }}</div>
-          <div class="py-3">{{ hora.temp }}°C</div>
-          <div class="py-3">{{ hora.weather.description }}</div>
-        </b-card>
-      </b-col>
-    </b-row>
+  <div class="table-container">
+    <div class="table-scroll">
+      <b-table
+        sticky-header
+        responsive
+        :items="pronosticoHorario"
+        :fields="fields"
+        class="table-scroll-horizontal"
+      >
+        <template #cell(timestamp_local)="row">
+          {{ formatHour(row.item.timestamp_local) }}
+        </template>
+        <template #cell(temp)="row"> {{ row.item.temp }}°C </template>
+        <template #cell(description)="row">
+          {{ row.item.weather.description }}
+        </template>
+      </b-table>
+    </div>
   </div>
 </template>
 
@@ -22,6 +29,12 @@ export default {
     return {
       nombreUbicacion: this.ciudadnombre,
       pronosticoHorario: [],
+      fields: [
+        { key: "timestamp_local", label: "Hora" },
+        { key: "temp", label: "Temperatura (°C)" },
+        { key: "weather.description", label: "Descripción del Tiempo" },
+      ],
+      stickyHeader: true,
     };
   },
 
@@ -45,7 +58,7 @@ export default {
 
             // Obtener el pronóstico horario de Weatherbit utilizando las coordenadas
             fetch(
-              `https://api.weatherbit.io/v2.0/forecast/hourly?lat=${latitud}&lon=${longitud}&key=${apiKeyWeatherbit}`
+              `https://api.weatherbit.io/v2.0/forecast/hourly?lat=${latitud}&lon=${longitud}&key=${apiKeyWeatherbit}&lang=es`
             )
               .then((response) => response.json())
               .then((data) => {
@@ -64,27 +77,18 @@ export default {
           console.error("Error al obtener coordenadas:", error);
         });
     },
+    formatHour(timestamp) {
+      // Formatea la hora para mostrar solo la hora y minutos (HH:mm)
+      const date = new Date(timestamp);
+      return date.toLocaleTimeString("es-ES", {
+        hour: "2-digit",
+        minute: "2-digit",
+      });
+    },
   },
   mounted() {
     this.fetchTiempoDatos();
   },
 };
 </script>
-
-<style>
-.titulo{
-  text-align: center;
-}
-.py-3{
-  text-align: center;
-  color: white;
-  
-}
-.card-background-image {
-  background-image: url("https://img.freepik.com/foto-gratis/cielo-nubes-blancas_23-2148824914.jpg"); /* Reemplaza 'tu_imagen_de_fondo.jpg' con la URL de tu imagen de fondo */
-  background-size: cover;
-  background-position: center;
-  color: white; 
-  
-}
-</style>
+<style></style>
