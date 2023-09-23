@@ -26,7 +26,7 @@
             </tr>
           </tbody>
         </table>
-        <DiasTiempo :ciudadnombre="ciudadnombre"/>
+        <DiasSemanasTiempo :ciudadnombre="ciudadnombre"/>
       </div>
     </div>
     <div class="card card-3 w-100">
@@ -38,14 +38,14 @@
 </template>
 
 <script>
-import DiasTiempo from "./DiasTiempo.vue";
 import axios from 'axios';  
 import HorasDiasTiempo from "./HorasDiasTiempo.vue";
+import DiasSemanasTiempo from "./DiasSemanasTiempo.vue";
 export default {
   name: "miTiempo",
   components: {
-    DiasTiempo,
-    HorasDiasTiempo
+    HorasDiasTiempo,
+    DiasSemanasTiempo
 },
   props: {
     ciudad: String,
