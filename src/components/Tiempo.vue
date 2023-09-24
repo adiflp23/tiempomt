@@ -4,28 +4,27 @@
       <div class="card main-div">
         <div class="p-3">
           <h2 class="mb-1 day text-light">Hoy</h2>
-          <p class="date mb-0 text-light">{{fecha}}</p>
           <small class="text-light">{{hora}}</small>
           <h2 class="place text-light"><span class="material-icons">{{ nombre }}location_on <small>{{ pais }}</small></span></h2>
-          <table class="m-4">
+          <table>
           <tbody>
             <tr>
-              <th>Humedad</th>
+              <th>Humedad:</th>
               <td>{{humedad}} %</td>
             </tr>
             <tr>
-              <th>Viento</th>
+              <th>Viento:</th>
               <td>{{ viento }} km/h</td>
             </tr>
           </tbody>
         </table>
           <div class="temp">
             <h1 class="weather-temp text-light">{{temperatura}}&deg; Grados</h1>
-            <h3 class="text-light">{{descripcion}} <img :src="iconoUrl"></h3>
+            <h3 class="weather-descrp text-light">{{ descripcion }}<img :src="iconoUrl"></h3>
           </div>
         </div>
       </div>
-      <div class="card card-2 w-100">
+      <div class="card card-2">
         <DiasSemanasTiempo :ciudadnombre="ciudadnombre"/>
       </div>
     </div>
@@ -61,7 +60,6 @@ export default {
         nombre: null,
         nombreMes: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto" ,"Septiembre","Octubre","Noviembre","Diciembre" ],
         pais: null,
-        nivelMar: null,
         viento: null,
         humedad: null,
         
@@ -75,7 +73,6 @@ export default {
     this.name = datosTiempo.name;
     this.pais = datosTiempo.sys.country;
     this.viento = datosTiempo.wind.speed;
-    this.nivelMar = datosTiempo.main.sea_level;
     this.humedad = datosTiempo.main.humidity;
     this.iconoUrl = `https://api.openweathermap.org/img/w/${datosTiempo.weather[0].icon}.png`;
     const d = new Date();
@@ -88,11 +85,19 @@ export default {
 </script>
 
 <style>
+.w-100{
+  background-color: transparent;
+}
 .weather-temp {
   margin: 0;
   font-weight: 700;
-  font-size: 4em;
+  font-size: 45px;
 }
+
+div.card.main-div{
+  background: rgba(24,24,27, 0.6);
+}
+
 .h2.mb1.day {
   font-size: 3rem;
   font-weight: 400;
@@ -102,8 +107,11 @@ export default {
   color: #fff;
   background-size: cover;
   background-position: center;
-  background-image: url('https://images.unsplash.com/photo-1694282303612-111be418eca4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY5NTQ5NzAzNA&ixlib=rb-4.0.3&q=80&w=1080');
-
+  background: rgba(24,24,27, 0.6);
+}
+div.card.card-2{
+  background-color: transparent;
+  border: transparent;
 }
 
 .main-div:hover {
@@ -115,11 +123,13 @@ export default {
 .card-2 {
   background-color: #212730;
   border-radius: 20px;
+  padding-left: 5%;
 }
 
 .card-3 {
   background-color: #212730;
   margin-top: 20px;
+  text-align: center;
 }
 
 .card-details {
@@ -149,6 +159,8 @@ th,
 td {
   font-size: 18px;
   color: #ffffff;
+  text-align: left;
+  
 }
 
 td {
@@ -156,8 +168,4 @@ td {
   color: white;
 }
 
-table,
-tr:hover {
-  color: red;
-}
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="diasSemanas">
       <h2 class="titulo">Pronóstico para la próxima semana:</h2>
       <b-row>
         <b-col sm="6" md="4" lg="2" xl="3"  v-for="dia in pronosticoDiario" :key="dia.valid_date">
@@ -71,6 +71,7 @@
       const dayName = date.toLocaleDateString('es-ES', { weekday: 'long' });
       return dayName.charAt(0).toUpperCase() + dayName.slice(1);
     },
+    
   },
     mounted() {
       this.fetchTiempoDatos();
@@ -81,6 +82,7 @@
   <style>
   .titulo{
     text-align: center;
+    color: white;
   }
 .py-1{
   text-align: center;

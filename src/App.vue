@@ -39,12 +39,18 @@ export default {
 </script>
 
 <style>
+body{
+  background-image: url("https://images.pexels.com/photos/209831/pexels-photo-209831.jpeg?cs=srgb&dl=pexels-pixabay-209831.jpg&fm=jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
 .header {
-  background-color: rgb(220, 220, 220);
   border-radius: 20px;
   text-align: center;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial,;
   margin-top: 5rem;
+  color: rgb(255, 255, 255);
 }
+
 
 </style>
