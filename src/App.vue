@@ -2,7 +2,7 @@
   <div class="app">
     <div class="header container h-100 p-5">
       <h1 class="mb-5">El Tiempo</h1>
-      <div class="d-flex justify-content-center h-100" >
+      <div class="d-flex justify-content-center h-100">
         <div class="searchbar w-50 mx-2">
           <input type="text" class="input form-control" v-model="ciudad" placeholder="Busca una ciudad...">
         </div>
@@ -10,7 +10,15 @@
       </div>
     </div>
     <br>
-    <Tiempo :ciudad="ciudad" v-if="mostrarTiempo" />
+    <Tiempo :ciudad="ciudad" v-if="mostrarTiempo && mostrarBusqueda" />
+    <b-sidebar id="sidebar" right shadow :visible="mostrarLimiteAlcanzado">
+      <div class="p-3">
+        <h2>Límite de búsquedas alcanzado</h2>
+        <p>Para buscar más, adquiera una suscripción</p>
+        <p>Para adquirir una suscripcion inicie sesión.</p>
+        <p> <a href="/">Inicie sesión o registrese dando click aquí!</a></p>
+      </div>
+    </b-sidebar>
   </div>
 </template>
 
@@ -26,13 +34,22 @@ export default {
     return {
       ciudad: " ",
       mostrarTiempo: false,
+      contadorBusquedas: 0, // Agregar contador de búsquedas
+      mostrarBusqueda: true, // Inicializar mostrarBusqueda
+      mostrarLimiteAlcanzado: false, // Inicializar mostrarLimiteAlcanzado
     }
   },
   methods: {
-    async buscarTiempo () {
-      this.mostrarTiempo = false;
-      await this.$nextTick();
-      this.mostrarTiempo = true;
+    async buscarTiempo() {
+      if (this.contadorBusquedas < 5) {
+        this.mostrarTiempo = false;
+        await this.$nextTick();
+        this.mostrarTiempo = true;
+        this.contadorBusquedas++;
+      } else {
+        this.mostrarBusqueda = false;
+        this.mostrarLimiteAlcanzado = true; // Mostrar el b-sidebar
+      }
     }
   }
 };
@@ -51,6 +68,4 @@ body{
   margin-top: 5rem;
   color: rgb(255, 255, 255);
 }
-
-
 </style>

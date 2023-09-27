@@ -11,7 +11,9 @@
         <template #cell(timestamp_local)="row">
           {{ formatHour(row.item.timestamp_local) }}
         </template>
-        <template #cell(temp)="row"> {{ row.item.temp }}°C </template>
+        <template #cell(temp)="row"> 
+          {{ row.item.temp }}°C 
+        </template>
         <template #cell(description)="row">
           {{ row.item.weather.description }}
         </template>
@@ -85,6 +87,7 @@ export default {
         minute: "2-digit",
       });
     },
+    
   },
   mounted() {
     this.fetchTiempoDatos();
@@ -92,4 +95,46 @@ export default {
 };
 </script>
 <style>
+.table-container {
+  margin: 20px;
+}
+
+.table-scroll {
+  overflow-x: auto;
+}
+
+.table-scroll-horizontal {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.b-table {
+  background-color: #ffffff;
+  border: 1px solid #e5e5e5;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.b-table th,
+.b-table td {
+  padding: 12px;
+  text-align: center;
+}
+
+.b-table th {
+  background-color: #f5f5f5;
+  color: #333;
+  font-weight: bold;
+}
+
+.b-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.b-table tbody tr:hover {
+  background-color: #f0f0f0;
+  transition: background-color 0.3s ease-in-out;
+}
 </style>
+
+

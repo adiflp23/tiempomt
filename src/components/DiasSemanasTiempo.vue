@@ -1,6 +1,6 @@
 <template>
     <div class="diasSemanas">
-      <h2 class="titulo">Pronóstico para la próxima semana:</h2>
+      <h2 class="titulo">Pronóstico para la próxima semana</h2>
       <b-row>
         <b-col sm="6" md="4" lg="2" xl="3"  v-for="dia in pronosticoDiario" :key="dia.valid_date">
           <b-card class="mb-2 card-background-image">
@@ -100,7 +100,7 @@
     
 }
   .card-background-image {
-    background-image: url("https://img.freepik.com/foto-gratis/cielo-nubes-blancas_23-2148824914.jpg"); /* Reemplaza 'tu_imagen_de_fondo.jpg' con la URL de tu imagen de fondo */
+    background-image: url("https://cdn5.f-cdn.com/contestentries/329593/18088126/5699feb841990_thumb900.jpg"); /* Reemplaza 'tu_imagen_de_fondo.jpg' con la URL de tu imagen de fondo */
     background-size: cover;
     background-position: center;
     color: white; 
