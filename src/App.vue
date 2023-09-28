@@ -1,7 +1,7 @@
 <template>
   <div class="app">
     <div class="header container h-100 p-5">
-      <h1 class="mb-5">El Tiempo</h1>
+      <h1 class="titulobuscador mb-5">El Tiempo</h1>
       <div class="d-flex justify-content-center h-100">
         <div class="searchbar w-50 mx-2">
           <input type="text" class="input form-control" v-model="ciudad" placeholder="Busca una ciudad...">
@@ -16,7 +16,7 @@
         <h2>Límite de búsquedas alcanzado</h2>
         <p>Para buscar más, adquiera una suscripción</p>
         <p>Para adquirir una suscripcion inicie sesión.</p>
-        <p> <a href="/">Inicie sesión o registrese dando click aquí!</a></p>
+        <p> <a href="/">¡Inicie sesión o registrese dando click aquí!</a></p>
       </div>
     </b-sidebar>
   </div>
@@ -65,7 +65,10 @@ body{
   border-radius: 20px;
   text-align: center;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial,;
-  margin-top: 5rem;
+  margin-top: 2rem;
   color: rgb(255, 255, 255);
+}
+.titulobuscador{
+  font-size: 70px ;
 }
 </style>

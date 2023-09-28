@@ -83,6 +83,8 @@
   .titulo{
     text-align: center;
     color: white;
+    margin-bottom: 2rem;
+    font-size: 40px;
   }
 .py-1{
   text-align: center;

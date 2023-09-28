@@ -3,7 +3,7 @@
     <div class="d-flex">
       <div class="card main-div">
         <div class="p-3">
-          <h2 class="mb-1 day text-light">Hoy</h2>
+          <h2 class="clasehoy day text-light">Hoy</h2>
           <small class="text-light">{{hora}}</small>
           <h2 class="place text-light"><span class="material-icons">{{ nombre }}location_on <small>{{ pais }}</small></span></h2>
           <table>
@@ -91,7 +91,7 @@ export default {
 .weather-temp {
   margin: 0;
   font-weight: 700;
-  font-size: 45px;
+  font-size: 65px;
 }
 
 div.card.main-div{
@@ -153,7 +153,9 @@ div.card.card-2{
 .h3_Left {
   font-size: 1rem;
 }
-
+.weather-descrp{
+  font-size: 45px;
+}
 
 th,
 td {
@@ -167,5 +169,4 @@ td {
   text-align: center;
   color: white;
 }
-
 </style>
