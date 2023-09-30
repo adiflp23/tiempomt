@@ -21,6 +21,7 @@
           <div class="temp">
             <h1 class="weather-temp text-light">{{temperatura}}&deg; Grados</h1>
             <h3 class="weather-descrp text-light">{{ descripcion }}<img :src="iconoUrl"></h3>
+            <p class="textodescriptivo">¡Gracias por elegirnos!</p>
           </div>
         </div>
       </div>
@@ -157,6 +158,11 @@ div.card.card-2{
   font-size: 45px;
 }
 
+.textodescriptivo{
+  font-size: 50px;
+  color: white;
+}
+
 th,
 td {
   font-size: 18px;
@@ -169,4 +175,5 @@ td {
   text-align: center;
   color: white;
 }
+
 </style>

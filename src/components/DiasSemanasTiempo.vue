@@ -89,6 +89,7 @@
 .py-1{
   text-align: center;
   color: white;
+  font-size: 23px;
 }
 
 .py-2{

@@ -10,7 +10,9 @@
       </div>
     </div>
     <br>
-    <Tiempo :ciudad="ciudad" v-if="mostrarTiempo && mostrarBusqueda" />
+    <transition name="fade">
+      <Tiempo :ciudad="ciudad" v-if="mostrarTiempo && mostrarBusqueda" />
+    </transition>
     <b-sidebar id="sidebar" right shadow :visible="mostrarLimiteAlcanzado">
       <div class="p-3">
         <h2>Límite de búsquedas alcanzado</h2>
@@ -71,4 +73,12 @@ body{
 .titulobuscador{
   font-size: 70px ;
 }
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 1s;
+}
+
+.fade-enter, .fade-leave-to /* .fade-leave-active en versión <2.1.8 */ {
+  opacity: 0;
+}
+
 </style>

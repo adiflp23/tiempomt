@@ -95,7 +95,15 @@ export default {
 };
 </script>
 <style>
-
+.table-container .table-scroll .table-responsive .table thead tr th {
+    background-color: skyblue; /* Cambia esto al color que desees */
+  }
+.table-container .table-scroll .table-responsive .table tbody tr td {
+    background-color: lightgray !important; /* Cambia esto al color que desees */
+  }
+.table-container{
+  background-color: lightgray;
+}
 </style>
 
 
